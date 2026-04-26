@@ -34,6 +34,16 @@ public class NavigationController {
 	Repo_assegnment repoAssegnmet;
 	@Autowired
 	Repo_auditLog repoAuditLog;
+	
+	
+	@Controller
+	public class HomeController {
+
+	    @GetMapping("/")
+	    public String home() {
+	        return "dashboard"; // or login or index (your template name)
+	    }
+	}
 
     @GetMapping("/dashboard")
     public String dashboard(HttpSession session, Model model) {
