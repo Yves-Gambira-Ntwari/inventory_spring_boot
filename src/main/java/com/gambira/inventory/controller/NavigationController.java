@@ -41,7 +41,7 @@ public class NavigationController {
 
 	    @GetMapping("/")
 	    public String home() {
-	        return "dashboard"; // or login or index (your template name)
+	        return "login"; // or login or index (your template name)
 	    }
 	}
 
