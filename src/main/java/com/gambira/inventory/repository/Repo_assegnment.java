@@ -5,4 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.gambira.inventory.models.Mdl_assegnment;
 
-public interface Repo_assegnment extends JpaRepository<Mdl_assegnment, Long> {}
+public interface Repo_assegnment extends JpaRepository<Mdl_assegnment, Long> {} // my repository for assegnment
