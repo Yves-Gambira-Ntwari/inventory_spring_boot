@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Assignment</title>
+</head>
+<style>
+	nav{
+		background: white;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 10rem;
+	}
+	
+	nav a i {
+    margin-right: 10px;
+}
+	
+	nav{
+		display: flex;
+		flex-direction: column;
+		gap: 10rem;
+		padding-left: 20px;
+		
+		
+	}
+	
+	.navs{
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		
+	}
+	
+	.navs h1{
+		color:#36396e;
+	}
+	
+	nav a{
+		display: flex;
+		color: #a8abba;
+		text-decoration: none;
+		transition: 300ms;
+	}
+	
+	nav a.active{
+		color:#36396e;
+	}
+	
+	nav a:hover{
+		color:#36396e;
+	}
+	
+	main{
+		margin-left: 12rem;
+	}
+
+.form{
+	display: flex;
+	width: 80%;
+	height: 80vh;
+}
+
+h2{
+	font-weight: bold;
+	text-align: center;
+}
+
+
+.form form{
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	gap: 2rem;
+	
+}
+
+
+.form input{
+	border: 1px solid rgb(192, 192, 192);
+}
+
+.form input,button{
+	width: 90%;
+	padding: 10px;
+	outline: none;
+
+}
+
+.form select{
+	border: 1px solid rgb(192, 192, 192);
+	padding: 10px;
+	width: 93%;
+}
+
+.form a{
+	color: white;
+	text-decoration: none;
+	background-color: #11a676;
+	padding: 5px 4rem;
+	border-radius: 10px;
+}
+
+.form button{
+	background: #11a676;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+</style>
+<body>
+<nav>
+	<div class="navs">	
+	<div>
+		<h1><span>Inventory</span></h1>
+	</div>		
+	<div>			
+        <a href="/dashboard" ><i class="fa-solid fa-gauge"></i> <span>Dashboard</span></a> 
+	</div>
+
+	<div>			
+        <a href="/employee"><i class="fa-solid fa-users"></i> <span>Employees</span></a> 
+	</div>
+
+	<div>			
+        <a href="/devices"><i class="fa-solid fa-laptop"></i> <span>Devices</span></a> 
+	</div>
+
+	<div>			
+        <a href="/department"><i class="fa-solid fa-building"></i> <span>Departments</span></a> 
+	</div>
+
+	<div>			
+        <a href="/assegnment" class="active"><i class="fa-solid fa-clipboard-list"></i> <span>Assignment</span></a> 
+	</div>
+
+	<div>			
+        <a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> <span>History</span></a>
+	</div>
+</div>
+
+<div class="logout">	
+	<div>			
+		<a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a>
+	</div>		
+</div>
+</nav>
+    
+    <main class="form">
+    <form th:action="@{/assignments/save}" method="post" th:object="${assegnment}">
+    <h2>Create Assignment</h2>
+		<input type="hidden" th:field="*{id}" class>
+		<div>			
+        <label for="issueDate">Issue Date:</label>
+        <input type="date" id="issueDate" th:field="*{issueDate}" required />
+		</div>
+		
+		<div>			
+        <label for="returnDate">Return Date:</label>
+        <input type="date" id="returnDate" th:field="*{returnDate}" />
+		</div>
+		
+		<div>			
+        <label for="status">Status:</label><br>
+        <select id="status" th:field="*{status}">
+            <option value="ISSUED">Issued</option>
+            <option value="RETURNED">Returned</option>
+            <option value="OVERDUE">Overdue</option>
+        </select>
+		</div>
+		
+		<div>			
+        <label for="device">Device:</label><br>
+        <select id="device" th:field="*{device}">
+			<option
+			th:each="dev :${device}"
+			th:value="${dev.id}"
+			th:text="${dev.serialNumber}"
+			>	
+			</option>
+		</select>
+		</div>
+		<div>
+		<label for="Employee">Employee</label> <br>	
+		<select id="Employee" th:field="*{employee}">
+			<option
+				th:each="emp : ${employee}"
+				th:value="${emp.id}"
+				th:text="${emp.name}"
+			></option>
+		</select>
+		</div>
+		<button type="submit">submit</button>
+    </form>
+	</main>

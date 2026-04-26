@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+</head>
+<style>
+	main{
+	text-align: center;
+}
+
+.auth{
+	display: flex;
+	width: 80%;
+	margin: 2rem 5rem;
+	height: 80vh;
+}
+
+h2{
+	font-weight: bold;
+}
+
+.auth .second{
+	background: linear-gradient(#2cca91, #11a676);
+	padding: 20px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 50%;
+	gap: 10px;
+}
+
+.auth form{
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	gap: 2rem;
+	
+}
+
+.auth .first{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 50%;
+	gap: 1rem;
+}
+
+.auth input{
+	border: 1px solid rgb(192, 192, 192);
+}
+
+.auth input,button{
+	width: 90%;
+	padding: 10px;
+	outline: none;
+
+}
+
+.auth a{
+	color: white;
+	text-decoration: none;
+	background-color: #11a676;
+	padding: 5px 4rem;
+	border-radius: 10px;
+}
+
+.auth button{
+	background: #11a676;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+</style>
+<body>
+	
+	<main>
+	<section class="auth">		
+	<section class="first">		
+    <h2>Login</h2>
+    <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+    <form th:action="@{/login}" method="post" th:object="${user}">
+        <input type="text" id="username" th:field="*{username}" placeholder="Enter your Username" required />
+        <input type="password" id="password" th:field="*{password}" placeholder="Enter your Password" required />
+
+        <button type="submit">Login</button>
+    </form>
+	</section>	
+		<section class="second">
+		<h2>Welcome to inventory </h2>
+		<p>
+			Welcome to inventory Login in this app which will help you to manager all you devices in you company
+		</p>
+		
+    	<a href="/register">Create account new account</a>
+	</section>	
+	</section>
+	</main>
+</body>
+</html>

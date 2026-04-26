@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>History</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<style>
+		nav{
+		background: white;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 10rem;
+	}
+	
+	nav a i {
+    margin-right: 10px;
+}
+	
+	nav{
+		display: flex;
+		flex-direction: column;
+		gap: 10rem;
+		padding-left: 20px;
+		
+		
+	}
+	
+	.navs{
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		
+	}
+	
+	.navs h1{
+		color:#36396e;
+	}
+	
+	nav a{
+		display: flex;
+		color: #a8abba;
+		text-decoration: none;
+		transition: 300ms;
+	}
+	
+	nav a.active{
+		color:#36396e;
+	}
+	
+	nav a:hover{
+		color:#36396e;
+	}
+	
+	main{
+		margin-left: 12rem;
+	}
+	
+	         table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        font-size: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        color: #11a676;
+        font-weight: bold;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .table-container {
+        width: 90%;
+        margin: auto;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    h2{
+		color: #36396e;
+	}
+</style>
+<body>
+<nav>
+	<div class="navs">	
+	<div>
+		<h1><span>Inventory</span></h1>
+	</div>		
+	<div>			
+        <a href="/dashboard" ><i class="fa-solid fa-gauge"></i> <span>Dashboard</span></a> 
+	</div>
+
+	<div>			
+        <a href="/employee"><i class="fa-solid fa-users"></i> <span>Employees</span></a> 
+	</div>
+
+	<div>			
+        <a href="/devices"><i class="fa-solid fa-laptop"></i> <span>Devices</span></a> 
+	</div>
+
+	<div>			
+        <a href="/department"><i class="fa-solid fa-building"></i> <span>Departments</span></a> 
+	</div>
+
+	<div>			
+        <a href="/assegnment"><i class="fa-solid fa-clipboard-list"></i> <span>Assignment</span></a> 
+	</div>
+
+	<div>			
+        <a href="/history" class="active"><i class="fa-solid fa-clock-rotate-left"></i> <span>History</span></a>
+	</div>
+</div>
+
+<div class="logout">	
+	<div>			
+		<a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a>
+	</div>		
+</div>
+</nav>
+<main>
+	<h2>Audit History</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Action</th>
+                <th>Timestamp</th>
+                <th>Performed By</th>
+                <th>Device</th>
+                <th>Employee</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="log, i : ${logs}">
+                <td th:text="${i.index + 1}"></td>
+                <td th:text="${log.action}"></td>
+                <td th:text="${log.timestamp}"></td>
+                <td th:text="${log.performedBy}"></td>
+                <td th:text="${log.device.serialNumber}"></td>
+                <td th:text="${log.employee.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+    
+</body>
+</html>
