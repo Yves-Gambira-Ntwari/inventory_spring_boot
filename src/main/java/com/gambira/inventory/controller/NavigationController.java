@@ -41,7 +41,7 @@ public class NavigationController {
 
 	    @GetMapping("/")
 	    public String home() {
-	        return "login"; // or login or index (your template name)
+	    	return "redirect:/login";// or login or index (your template name)
 	    }
 	}
 
